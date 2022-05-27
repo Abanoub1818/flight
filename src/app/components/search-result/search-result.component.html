@@ -1,0 +1,274 @@
+
+<div class="flex-auto -mt-16 p-6 rounded-t-2xl shadow bg-card">
+  <div>
+      <!-- class="p-grid" -->
+
+      <!-- class="p-lg-8 p-md-8 p-sm-12" -->
+      <p-table
+      [value]="filterFlights"
+      dataKey="id"
+      #dt
+      styleClass="p-datatable-reponsive"
+      [responsive]="true"
+      [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]"
+      [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [filterDelay]="0"
+      [globalFilterFields]="[
+              'flightDate',
+              'flightNumber',
+              'countryTo',
+              'airport',
+              'countryFrom',
+              'depTime',
+              'arrTime',
+              'class'
+
+          ]"
+      >
+
+      <ng-template pTemplate="caption" >
+      <div style="display: flex;
+      justify-content: space-between;">
+        <h2 class="table-header">
+                  List of available flights :</h2>
+
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="search" placeholder="Global Search" class="search-input" (input)="dt.filterGlobal($any($event.target).value, 'contains')" >
+    </mat-form-field>
+      </div>
+            </ng-template>
+          <ng-template pTemplate="header">
+              <tr>
+
+                  <th style="width: 3rem"></th>
+
+                  <th  class="colHeader"pSortableColumn="airport">
+                    <div class="p-d-flex p-jc-between p-ai-center ">
+                      Airport
+                      <p-sortIcon class="colHeader" field="airport"></p-sortIcon>
+                      <p-columnFilter
+                      type="text"
+                      field="airport"
+                      display="menu"
+                      class="p-ml-auto"
+                      ></p-columnFilter>
+                    </div>
+                  </th>
+                  <th  class="colHeader"pSortableColumn="flightNumber">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                      Flight Number
+                      <p-sortIcon class="colHeader" field="flightNumber"></p-sortIcon>
+                      <p-columnFilter
+                      type="date"
+                      field="flightNumber"
+                      display="menu"
+                      class="p-ml-auto"
+                      ></p-columnFilter>
+                    </div>
+                  </th>
+                  <th  class="colHeader"pSortableColumn="flightDate">
+                      <div class="p-d-flex p-jc-between p-ai-center">
+                        Flight Date
+                          <p-sortIcon class="colHeader" field="flightDate"></p-sortIcon>
+                          <p-columnFilter
+                              type="text"
+                              field="flightDate"
+                              display="menu"
+                              class="p-ml-auto"
+                          ></p-columnFilter>
+                      </div>
+                  </th>
+                  <th  class="colHeader"pSortableColumn="class">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                      Class
+                        <p-sortIcon class="colHeader" field="class"></p-sortIcon>
+                        <p-columnFilter
+                            type="date"
+                            field="class"
+                            display="menu"
+                            class="p-ml-auto"
+                        ></p-columnFilter>
+                    </div>
+                </th>
+
+                  <th  class="colHeader"pSortableColumn="countryFrom">
+                      <div class="p-d-flex p-jc-between p-ai-center">
+                        From
+                          <p-sortIcon class="colHeader" field="countryFrom"></p-sortIcon>
+                          <p-columnFilter
+                              type="text"
+                              field="countryFrom"
+                              display="menu"
+                              class="p-ml-auto"
+                          ></p-columnFilter>
+                      </div>
+                  </th>
+                  <th  class="colHeader"pSortableColumn="countryTo">
+                      <div class="p-d-flex p-jc-between p-ai-center">
+                          To
+                          <p-sortIcon class="colHeader" field="countryTo"></p-sortIcon>
+                          <p-columnFilter
+                              type="text"
+                              field="countryTo"
+                              display="menu"
+                              class="p-ml-auto"
+                          ></p-columnFilter>
+                      </div>
+                  </th>
+
+                  <th  class="colHeader"pSortableColumn="depTime">
+                      <div class="p-d-flex p-jc-between p-ai-center">
+                        Departure Time
+                          <p-sortIcon class="colHeader" field="depTime"></p-sortIcon>
+                          <p-columnFilter
+                              type="text"
+                              field="depTime"
+                              display="menu"
+                              class="p-ml-auto"
+                          ></p-columnFilter>
+                      </div>
+                  </th>
+                  <th  class="colHeader"pSortableColumn="arrTime">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                      Arrival Time
+                        <p-sortIcon class="colHeader" field="arrTime"></p-sortIcon>
+                        <p-columnFilter
+                            type="text"
+                            field="arrTime"
+                            display="menu"
+                            class="p-ml-auto"
+                        ></p-columnFilter>
+                    </div>
+                </th>
+                  <th >
+                         Booking
+                  </th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user >
+              <tr>
+                  <td>
+                      <img
+                          src="../../../assets/images/default.png"
+                          width="32px"
+                          style="vertical-align: middle"
+                          style="
+                              cursor: pointer;
+                              border-radius: 50%;
+                              width: 50px;
+                              margin-right: 10px;
+                          "
+                      />
+                  </td>
+                  <td>
+                      <span class="p-column-title">Airport</span
+                      >{{ user.airport }}
+                  </td>
+                  <td>
+                      <span class="p-column-title">Flight Number</span
+                      >{{ user.flightNumber  }}
+                  </td>
+                  <td>
+                    <span class="p-column-title">Flight Date</span
+                    >{{ user.flightDate | date: "MM/dd/yyyy"}}
+                </td>
+
+
+                  <td>
+                      <span class="p-column-title">Class</span
+                      >{{ user.class ? user.class : "Economy" }}
+                  </td>
+                  <td>
+                      <span class="p-column-title">From</span
+                      >{{ user.countryFrom }}
+                  </td>
+                  <td>
+                      <span class="p-column-title">To</span
+                      >
+                      {{
+                          user.countryTo
+                      }}
+                  </td>
+                  <td>
+                    <span class="p-column-title">Departure Time</span
+                    >{{ user.depTime | date:"M/d/yy, h:mm a"}}
+                </td>
+                <td>
+                  <span class="p-column-title">Arrival Time</span
+                  >{{ user.arrTime | date:"M/d/yy, h:mm a" }}
+              </td>
+
+                  <td>
+                      <span class="p-column-title">Booking</span>
+
+                      <button (click)="showDial(user)" class="btn btn-success">Book Now</button>
+                  </td>
+              </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td  style="text-align: center; font-weight: bold;" colspan="10">There are no flights available.</td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </div>
+</div>
+<p-toast [style]="{ width: '20vw' }"></p-toast>
+
+<p-dialog header="Confirm Booking" [(visible)]="displayDial" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <form [formGroup]="formFilter" (ngSubmit)="confirmAdd()"  >
+      <div class="p-grid  p-mb-md-3 p-mb-0 p-p-5 p-justify-center" >
+
+
+
+        <mat-form-field class="p-lg-6 p-md-8 p-col-11 p-mb-4" appearance="fill">
+          <mat-label>Name :</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="formFilter.get('name')?.invalid && (formFilter.get('name')?.touched || formFilter.get('name')?.dirty)" >
+            enter a valid name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="p-lg-6 p-md-8 p-col-11 p-mb-4" appearance="fill">
+          <mat-label>Phone :</mat-label>
+          <input matInput formControlName="phone">
+          <mat-error *ngIf="formFilter.get('phone')?.invalid && (formFilter.get('phone')?.touched || formFilter.get('phone')?.dirty)" >
+            enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="p-lg-6 p-md-8 p-col-11 p-mb-4" appearance="fill">
+          <mat-label>email :</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="formFilter.get('email')?.invalid && (formFilter.get('email')?.touched || formFilter.get('email')?.dirty)" >
+            enter a valid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="p-lg-6 p-md-8 p-col-11 p-mb-4" appearance="fill">
+          <mat-label>credit card number :</mat-label>
+          <input matInput formControlName="credit">
+          <mat-error *ngIf="formFilter.get('credit')?.invalid && (formFilter.get('credit')?.touched || formFilter.get('credit')?.dirty)" >
+            enter a valid credit number
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="p-grid p-justify-end p-mb-md-3 p-mb-3 p-pr-5">
+        <button  class="btn btn-secondary"  type="button" (click)="reset()" >
+            cancel
+        </button>
+        <button
+            class="p-ml-4 "
+            type="button"
+            class="btn btn-success"
+            type="submit"
+        >
+            Confirm Booking
+        </button>
+      </div>
+
+  </form>
+</p-dialog>

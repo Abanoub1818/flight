@@ -1,0 +1,28 @@
+<div class="nav">
+  <input type="checkbox" id="nav-check">
+  <div class="nav-header">
+    <div class="nav-title">
+      <img src="../assets/images/default1.png" width="160px" style="margin-top: -5px" >
+
+    </div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/result" routerLinkActive="active">Search List</a>
+    <a routerLink="/ticket" routerLinkActive="active">Your Tickets</a>
+
+  </div>
+</div>
+<div class="back-ground" >
+  <router-outlet ></router-outlet>
+</div>
+
+
